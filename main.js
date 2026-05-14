@@ -9,46 +9,87 @@ class GolfTracker extends HTMLElement {
   render() {
     this.shadowRoot.innerHTML = `
       <style>
+        :host {
+          display: block;
+          max-width: 800px;
+          margin: 0 auto;
+          background: #fff;
+          padding: 2rem;
+          border-radius: 8px;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        #hole-form {
+          display: flex;
+          justify-content: center;
+          gap: 1rem;
+          margin-bottom: 2rem;
+        }
+
+        input {
+          padding: 0.75rem;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          font-size: 1rem;
+          width: 100%;
+        }
+
+        button {
+          padding: 0.75rem 1.5rem;
+          border: none;
+          border-radius: 8px;
+          background-color: #007bff;
+          color: white;
+          font-size: 1rem;
+          cursor: pointer;
+        }
+
         table {
           width: 100%;
-          table-layout: fixed;
           border-collapse: collapse;
-        }
-        th, td {
-          text-align: center;
-          width: 20%;
-          padding: 8px;
-        }
-        #total-strokes {
-          text-align: center;
-          font-size: 1.5rem;
           margin-top: 2rem;
-          font-weight: bold;
+          table-layout: fixed;
         }
-        .button-container {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-            margin-bottom: 1rem;
+
+        thead {
+          background-color: #007bff;
+          color: white;
         }
-        #end-round {
-            background-color: #dc3545;
+
+        th, td {
+          padding: 1rem;
+          text-align: center;
         }
-        #end-round:hover {
-            background-color: #c82333;
+
+        th {
+          font-size: 1.1rem;
+          width: 20%;
         }
-         #end-round:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
-        button:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
+
         tbody tr:nth-child(even) {
-            background-color: #e0e0e0;
-        }      
+          background-color: #e6e6fa;
+        }
+
+        tbody tr:nth-child(odd) {
+          background-color: #add8e6;
+        }
+
+        td {
+          font-weight: bold;
+          color: #333;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        #total-strokes {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
       </style>
       <div>
         <form id="hole-form">
@@ -115,10 +156,10 @@ class GolfTracker extends HTMLElement {
         (hole.par === 4 && hole.shotsToGreen > 2) ||
         (hole.par === 3 && hole.shotsToGreen > 1)
           ? 'red'
-          : '';
+          : '#333';
 
-      const puttsColor = hole.putts > 2 ? 'red' : '';
-      const totalColor = hole.total === hole.par ? 'green' : '';
+      const puttsColor = hole.putts > 2 ? 'red' : '#333';
+      const totalColor = hole.total === hole.par ? 'green' : '#333';
 
       row.innerHTML = `
         <td>${hole.hole}</td>
