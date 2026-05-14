@@ -7,8 +7,36 @@ body {
     padding: 2rem;
 }
 
+header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
 h1 {
     text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 0;
+}
+
+.theme-switcher {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.theme-switcher i {
+    font-size: 1.5rem;
+}
+
+#sun-icon {
+    color: #f1c40f;
+}
+
+#moon-icon {
+    color: #3498db;
 }

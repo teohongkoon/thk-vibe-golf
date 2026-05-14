@@ -19,6 +19,41 @@ class GolfTracker extends HTMLElement {
           box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
+        :host(.night) {
+            background: #333;
+            color: #fff;
+        }
+
+        :host(.night) #hole-form {
+            background: #444;
+        }
+
+        :host(.night) input {
+            background: #555;
+            color: #fff;
+            border-color: #666;
+        }
+
+        :host(.night) button {
+            background-color: #0056b3;
+        }
+
+        :host(.night) thead {
+            background-color: #0056b3;
+        }
+
+        :host(.night) tbody tr:nth-child(even) {
+            background-color: #444;
+        }
+
+        :host(.night) tbody tr:nth-child(odd) {
+            background-color: #555;
+        }
+
+        :host(.night) td {
+            color: #fff;
+        }
+
         #hole-form {
           display: flex;
           justify-content: center;
@@ -156,10 +191,10 @@ class GolfTracker extends HTMLElement {
         (hole.par === 4 && hole.shotsToGreen > 2) ||
         (hole.par === 3 && hole.shotsToGreen > 1)
           ? 'red'
-          : '#333';
+          : 'inherit';
 
-      const puttsColor = hole.putts > 2 ? 'red' : '#333';
-      const totalColor = hole.total === hole.par ? 'green' : '#333';
+      const puttsColor = hole.putts > 2 ? 'red' : 'inherit';
+      const totalColor = hole.total === hole.par ? 'green' : 'inherit';
 
       row.innerHTML = `
         <td>${hole.hole}</td>

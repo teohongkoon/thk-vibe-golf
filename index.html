@@ -5,9 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Golf Tracker</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <h1>Golf Tracker</h1>
+    <header>
+        <h1>Golf Tracker</h1>
+        <div class="theme-switcher">
+            <i class="fas fa-sun" id="sun-icon"></i>
+            <i class="fas fa-moon" id="moon-icon" style="display: none;"></i>
+        </div>
+    </header>
     <golf-tracker></golf-tracker>
     
     <div id="disqus_thread"></div>
@@ -31,5 +38,23 @@
     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
     <script src="main.js"></script>
+    <script>
+        const themeSwitcher = document.querySelector('.theme-switcher');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+        const golfTracker = document.querySelector('golf-tracker');
+
+        themeSwitcher.addEventListener('click', () => {
+            golfTracker.shadowRoot.host.classList.toggle('night');
+            const isNight = golfTracker.shadowRoot.host.classList.contains('night');
+            if (isNight) {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'inline-block';
+            } else {
+                sunIcon.style.display = 'inline-block';
+                moonIcon.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
